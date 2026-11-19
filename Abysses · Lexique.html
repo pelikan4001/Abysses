@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abysses · Lexique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#0b2a3c;--bg2:#06121c;--ink:#e8f3f7;--mute:#8fb3c4;--line:rgba(160,210,230,.18);
+  --card:rgba(255,255,255,.06);--accent:#5fe0c8;--warn:#ff8f70;
+  --t1:#9fd8ee;--t2:#62c6c0;--t3:#5ea8ff;--t4:#a98bff;--t5:#ffd36e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg2);
+  background-image:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 70%);background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;}
+.wrap{max-width:520px;margin:0 auto;padding:22px 18px 60px;}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;margin:0}
+h1{font-size:34px;letter-spacing:-.5px}
+.sub{color:var(--mute);margin:6px 0 22px;line-height:1.45;font-size:15px}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px}
+.btn{background:var(--accent);color:#04201b;font-weight:600;padding:14px 18px;width:100%;font-size:16px}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.daily{background:linear-gradient(135deg,#123f57,#0d2636);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:22px}
+.daily .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.daily h2{font-size:24px;margin:6px 0 4px}
+.daily p{color:var(--mute);margin:0 0 14px;font-size:14px}
+.sec{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:8px 0 10px;font-weight:600}
+.chapters{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ch{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:left;color:var(--ink)}
+.ch .e{font-size:24px}
+.ch .n{font-weight:600;margin-top:6px}
+.ch .b{font-size:12px;color:var(--mute);margin-top:2px}
+details{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+summary{cursor:pointer;font-weight:600}
+details p,details li{color:var(--mute);font-size:14px;line-height:1.5}
+.tiers{list-style:none;padding:0;margin:8px 0 0}
+.tiers li{display:flex;justify-content:space-between;padding:4px 0}
+/* game */
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.top .x{background:none;color:var(--mute);font-size:14px;padding:6px 0}
+.top .chn{font-weight:600}
+.layout{display:flex;gap:14px}
+.gauge{width:34px;flex:none;position:relative;border-radius:18px;background:linear-gradient(180deg,#2b7fa3,#0f3b52 45%,#061019);border:1px solid var(--line);min-height:380px;overflow:hidden}
+.gauge .fill{position:absolute;left:0;right:0;top:0;background:rgba(95,224,200,.18);transition:height .7s ease}
+.gauge .dot{position:absolute;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent);transition:top .7s ease}
+.gauge .m{position:absolute;left:0;right:0;text-align:center;font-size:9px;color:rgba(255,255,255,.45)}
+.main{flex:1;min-width:0}
+.meta{display:flex;justify-content:space-between;color:var(--mute);font-size:13px;margin-bottom:8px}
+.timer{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:16px}
+.timer i{display:block;height:100%;background:var(--accent);width:100%}
+.timer i.low{background:var(--warn)}
+.prompt{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.prompt .kind{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.prompt h2{font-size:23px;line-height:1.25;margin:8px 0 4px}
+.prompt .hint{color:var(--mute);font-size:13px}
+form{margin-top:14px;display:flex;gap:8px}
+input{flex:1;min-width:0;font:inherit;font-size:17px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.25);color:var(--ink);outline:none}
+input:focus{border-color:var(--accent)}
+form .btn{width:auto;padding:13px 16px}
+.res{margin-top:14px;border-radius:18px;padding:18px;border:1px solid var(--line);background:rgba(0,0,0,.2);animation:up .35s ease}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.res .ans{font-size:15px;color:var(--mute)}
+.res .tier{font-family:Fraunces,serif;font-size:28px;margin:4px 0}
+.res .pts{font-weight:600}
+.res .why{color:var(--mute);font-size:13px;margin-top:6px}
+.res .ex{margin-top:12px;font-size:13px;color:var(--mute);line-height:1.5}
+.res .ex b{color:var(--ink);font-weight:500}
+.res .btn{margin-top:14px}
+/* end */
+.score{text-align:center;padding:10px 0 18px}
+.score .big{font-family:Fraunces,serif;font-size:56px;line-height:1}
+.score .dep{color:var(--accent);font-weight:600;margin-top:6px}
+.score .zone{color:var(--mute);margin-top:4px}
+.rows{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:16px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-top:1px solid var(--line);gap:10px}
+.row:first-child{border-top:0}
+.row .l{min-width:0}
+.row .q{font-size:12px;color:var(--mute)}
+.row .a{font-weight:500;overflow-wrap:anywhere}
+.row .t{font-size:13px;font-weight:600;white-space:nowrap}
+.share{white-space:pre;font-family:ui-monospace,Menlo,monospace;font-size:13px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;overflow:auto}
+.stack>*+*{margin-top:10px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#e8f3f7;color:#06121c;padding:10px 16px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.on{opacity:1}
+.c1{color:var(--t1)}.c2{color:var(--t2)}.c3{color:var(--t3)}.c4{color:var(--t4)}.c5{color:var(--t5)}.c0{color:var(--warn)}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="toast" id="toast"></div>
+<script>
+/* ============ Paliers de rareté ============ */
+const TIERS = [
+  {name:"Hors lexique", pts:0,   emo:"⬛", cls:"c0"},
+  {name:"Écume",        pts:10,  emo:"🫧", cls:"c1"},
+  {name:"Lagon",        pts:25,  emo:"🐠", cls:"c2"},
+  {name:"Grand large",  pts:50,  emo:"🐬", cls:"c3"},
+  {name:"Abysses",      pts:75,  emo:"🦑", cls:"c4"},
+  {name:"Perle rare",   pts:100, emo:"🦪", cls:"c5"},
+];
+const ZONES = [[0,"Zone éclairée"],[1000,"Zone crépusculaire"],[2500,"Zone de minuit"],[4000,"Zone abyssale"],[5500,"Zone hadale"],[7000,"Plongée parfaite"]];
+const TIME = 25;
+
+/* ============ Chapitres ============
+   Chaque catégorie : 5 chaînes = paliers 1 (évident) → 5 (perle rare).
+   n = noms, v = verbes, a = adjectifs, x = expressions (fragments reconnus). */
+const CHAPTERS = [
+{id:"meteo", name:"La météo", emoji:"🌦️", of:"la météo", letter:"B",
+ n:["pluie|soleil|neige|vent|nuage|orage",
+    "tempête|brouillard|grêle|éclair|tonnerre|arc-en-ciel|température|chaleur|froid|averse",
+    "brume|ouragan|tornade|cyclone|givre|verglas|rosée|canicule|bruine|bourrasque|météo|climat|gel|ciel|thermomètre|parapluie|degré|saison|anticyclone|bulletin|flocon",
+    "baromètre|blizzard|mistral|tramontane|giboulée|crachin|brise|bise|grésil|zéphyr|mousson|isobare|humidité|dépression|rafale|accalmie|éclaircie|pluviomètre|congère|sécheresse|inondation|foudre|stratus|cumulus|nimbus|cirrus|ensoleillement|prévision|perturbation",
+    "anémomètre|virga|noroît|suroît|sirocco|foehn|alizé|cumulonimbus|altostratus|stratocumulus|isotherme|albédo|parhélie|frimas|poudrerie|ondée|aquilon|autan|harmattan|nébulosité|pluviosité|hygrométrie|halo|brouillasse|blizzard"],
+ v:["pleuvoir|neiger|souffler|briller",
+    "geler|tonner|venter|grêler|chauffer|refroidir|mouiller",
+    "bruiner|dégeler|fondre|éclairer|crachiner|givrer|tomber|couvrir|réchauffer|sécher|tremper|grelotter|transpirer",
+    "éclaircir|brouillasser|pleuvasser|pleuviner|dégivrer|frissonner|abriter|prévoir|inonder|balayer|rafraîchir|assombrir|menacer|gronder|tourbillonner|fouetter",
+    "floconner|neigeoter|grésiller|brumasser|tempêter|fulminer|rugir|cingler|dégoutter|ruisseler|poudroyer"],
+ a:["chaud|froid|ensoleillé|nuageux|pluvieux",
+    "venteux|orageux|humide|sec|gris|brumeux|couvert|frais|doux|beau|neigeux",
+    "glacial|tiède|caniculaire|lourd|étouffant|maussade|clair|dégagé|instable|variable|radieux|torride|glacé|mouillé|tempéré",
+    "brûlant|venté|moite|nébuleux|automnal|hivernal|printanier|estival|tropical|polaire|sombre|menaçant|pluvial|frisquet|gelé|givré|aride|bruineux",
+    "cotonneux|plombé|blafard|crépusculaire|hygrométrique|barométrique|atmosphérique|tempétueux|ouaté|diaphane|azuré|serein|pommelé|moutonné|anticyclonique|cyclonique|grisâtre|boréal|austral"],
+ x:["pleut des cordes|apres la pluie le beau temps|froid de canard|temps de chien",
+    "coup de foudre|vache qui pisse|parler de la pluie et du beau temps|vent en poupe|dans le brouillard|derniere pluie|ne te decouvre pas d un fil",
+    "faire la pluie et le beau temps|tomber des nues|dans les nuages|sur un nuage|qui seme le vent|une hirondelle ne fait pas le printemps|au beau fixe|contre vents et marees|vent de panique|neige au soleil|brasser du vent",
+    "tempete dans un verre d eau|ciel lui tombe sur la tete|tomber sur la tete|hallebardes|orage dans l air|eclair de genie|froid de loup|mettre un chien dehors|pleut a seaux|saint medard|rien de nouveau sous le soleil|rayon de soleil",
+    "ciel pommele|noel au balcon|petite pluie abat grand vent|rouge le soir|giboulees de mars|ete indien|ete de la saint martin|ciel de traine"]},
+
+{id:"cuisine", name:"La cuisine", emoji:"🍳", of:"la cuisine", letter:"P",
+ n:["pain|fromage|pomme|gâteau|poulet|pâtes|sel|sucre|beurre|œuf",
+    "tomate|riz|poivre|farine|lait|chocolat|soupe|tarte|salade|carotte|poisson|viande|four|casserole|poêle|couteau|recette|cuisinier|chef|frites|crêpe|omelette",
+    "ail|oignon|persil|basilic|sauce|pizza|steak|jambon|baguette|croissant|confiture|miel|vinaigre|huile|moutarde|courgette|aubergine|poireau|fouet|louche|spatule|assiette|fourchette|cuillère|tablier|épice|gratin|quiche|ratatouille|blanquette|bœuf|cocotte|marmite|mixeur|plat|purée|pâtisserie",
+    "échalote|estragon|ciboulette|cerfeuil|thym|laurier|romarin|muscade|cannelle|safran|béchamel|mayonnaise|vinaigrette|soufflé|cassoulet|bouillabaisse|choucroute|tartiflette|clafoutis|madeleine|financier|mandoline|passoire|écumoire|rouleau|pâtissier|commis|brigade|marinade|bouillon|terrine|pâté|tapenade|wok|zeste|râpe|brioche|ganache|coulis|pistou|praline",
+    "chinois|bain-marie|sauteuse|mirepoix|brunoise|julienne|chiffonnade|paupiette|quenelle|kouign-amann|aligot|piperade|pissaladière|garbure|tian|bouquet garni|roux|nappage|mouillette|cul-de-poule|maryse|chalumeau|salamandre|sabayon|velouté|duxelles|beurre blanc|fumet|chapelure|panure|croûton|pâton|levain|tamis|ficelle|piston|panade"],
+ v:["cuire|manger|cuisiner|couper|boire",
+    "mélanger|bouillir|frire|griller|goûter|éplucher|préparer|servir|rôtir|chauffer|verser",
+    "fouetter|émincer|hacher|râper|mijoter|saler|poivrer|beurrer|égoutter|pétrir|assaisonner|découper|dorer|farcir|sucrer|tartiner|remuer|déguster|dresser|sauter|peler|presser",
+    "braiser|blanchir|flamber|caraméliser|réduire|napper|paner|fariner|incorporer|tamiser|zester|ciseler|mariner|déglacer|gratiner|étuver|pocher|saisir|dénoyauter|abaisser|émulsionner|clarifier|torréfier|fumer|confire|paupiner|pocher",
+    "chemiser|foncer|blondir|suer|singer|lier|abricoter|chinoiser|monder|habiller|brider|barder|larder|piquer|clouter|lustrer|glacer|vanner|détendre|pincer|escaloper|parer|puncher|pocher|perler"],
+ a:["bon|délicieux|sucré|salé|chaud",
+    "épicé|frais|cru|cuit|amer|acide|froid|gras|croustillant|fondant|savoureux",
+    "moelleux|tendre|juteux|onctueux|crémeux|piquant|doux|fade|brûlé|grillé|fumé|gourmand|léger|copieux|appétissant|poivré|pané",
+    "acidulé|aigre|aigre-doux|caramélisé|croquant|gratiné|rassis|saignant|mijoté|parfumé|relevé|exquis|succulent|fruité|nappé|farci|émincé|végétarien|végétalien|faisandé|braisé|ferme",
+    "sapide|al dente|nacré|filant|mousseux|coulant|insipide|ragoûtant|gouleyant|charnu|astringent|capiteux|liquoreux|corsé|rance|goûteux|ambré|feuilleté|meringué|praliné|umami|confit"],
+ x:["avoir la peche|mettre les pieds dans le plat|raconter des salades|cerise sur le gateau|c est du gateau",
+    "beurre dans les epinards|tomber dans les pommes|tout un fromage|coeur d artichaut|occupe toi de tes oignons|tes oignons|pour des prunes|haut comme trois pommes|fin des haricots|ramener sa fraise",
+    "le beurre et l argent du beurre|marcher sur des oeufs|faire chou blanc|pain sur la planche|casser du sucre|tourner au vinaigre|dans les choux|dans son assiette|mi figue mi raisin|en rang d oignons|couper la poire en deux|se fendre la poire|ca ne mange pas de pain",
+    "la main a la pate|sent le roussi|une bonne pate|faire le poireau|pas de la tarte|tarte a la creme|tout un plat|eau dans son vin|avoir la frite|carottes sont cuites|rouge comme une tomate|presse comme un citron|soupe au lait|cuire dans son jus|les torchons et les serviettes",
+    "rouler dans la farine|a boire et a manger|bouillon d onze heures|bouillon de onze heures|grain de sel|choux gras|marrons du feu|dans la choucroute|dans la semoule|entre la poire et le fromage|la poire et le fromage|mettre du beurre"]},
+
+{id:"mer", name:"La mer", emoji:"🌊", of:"la mer", letter:"V",
+ n:["plage|vague|bateau|poisson|sable|eau",
+    "requin|baleine|dauphin|coquillage|crabe|phare|port|marée|île|océan|sel|algue|bouée|mouette|plongée|surf|voile|voilier|sous-marin|ancre|pêcheur",
+    "méduse|pieuvre|poulpe|homard|crevette|moule|huître|étoile de mer|corail|récif|écume|horizon|rivage|côte|falaise|dune|goéland|mât|capitaine|marin|matelot|navire|filet|tortue|phoque|courant|tempête|naufrage|épave|pirate|tsunami|lagon|baie|crique|sardine|vent|vacances",
+    "varech|goémon|bernique|bigorneau|oursin|anémone|hippocampe|raie|espadon|thon|morue|cachalot|orque|narval|morse|otarie|albatros|cormoran|pélican|estran|jetée|digue|quai|amarre|hublot|proue|poupe|coque|gouvernail|bastingage|abysse|houle|ressac|embruns|chalutier|paquebot|caravelle|frégate|boussole|sextant|scaphandre|tuba|palmes|vigie|mousse|flibustier|corsaire|archipel|atoll|fjord|golfe|estuaire|détroit|calanque|vase|vedette|vacancier",
+    "laisse de mer|zostère|krill|plancton|nautile|holothurie|gorgone|madrépore|bathyscaphe|étrave|tillac|beaupré|misaine|artimon|foc|spinnaker|bôme|hauban|étai|écoutille|cabestan|guindeau|quille|carène|sabord|écubier|fosse|benthos|ria|aber|tombolo|lido|grève|vive|baliste|mérou|congre|murène|rascasse|sar|bar|maquereau|vasière"],
+ v:["nager|naviguer|pêcher|plonger",
+    "bronzer|voguer|couler|flotter|ramer|surfer|baigner|accoster",
+    "amarrer|chavirer|dériver|échouer|sombrer|hisser|mouiller|appareiller|aborder|débarquer|embarquer|barrer|louvoyer|tanguer|déferler|écumer",
+    "affaler|border|choquer|empanner|virer|lofer|haler|gîter|caboter|croiser|ancrer|godiller|patauger|barboter|ondoyer|mugir|clapoter|sillonner|écoper|calfater|caréner|radouber",
+    "carguer|ferler|gréer|arrimer|souquer|étaler|affourcher|bourlinguer|cingler|paumoyer|lamaner|déhaler|embosser|haubaner|vaser"],
+ a:["bleu|salé|grand|calme|profond",
+    "agité|marin|maritime|houleux|turquoise|chaud|froid|mouillé|sauvage|immense",
+    "océanique|côtier|insulaire|sablonneux|iodé|transparent|limpide|vert|déchaîné|démonté|nautique|naval|portuaire|balnéaire|tropical|navigable",
+    "abyssal|pélagique|benthique|littoral|émeraude|azur|azuré|translucide|cristallin|écumant|écumeux|amphibie|halieutique|saumâtre|étale|lisse|plat|furieux|tumultueux|mugissant|ondoyant|glauque|outremer|vaseux",
+    "hauturier|subaquatique|sous-marin|bathyal|thalassique|océanographique|marémoteur|ensablé|embrumé|nacré|irisé|opalescent|abrité|venté|déferlant|clapoteux|moutonneux|moutonnant"],
+ x:["poisson dans l eau|goutte d eau dans la mer|pas la mer a boire",
+    "noyer le poisson|meme bateau|mener en bateau|monter un bateau|tomber a l eau|vents et marees|mal de mer|calme avant la tempete",
+    "a vau l eau|mettre les voiles|vent en poupe|rester en rade|garder le cap|tenir le cap|virer de bord|lever l ancre|jeter l ancre|faire des vagues|pas de vagues|noyer dans un verre d eau|mer d huile",
+    "quittent le navire|tirer des bords|a la derive|eau trouble|eaux troubles|creux de la vague|surfer sur la vague|pied marin|naviguer a vue|loup de mer|a bon port|prendre le large",
+    "sauve qui peut|branle bas|vague a l ame|marin d eau douce|larguer les amarres|tenir la barre|dans le sillage|mille sabords|tonnerre de brest|entre deux eaux"]},
+
+{id:"musique", name:"La musique", emoji:"🎻", of:"la musique", letter:"C",
+ n:["chanson|piano|guitare|musique|chanteur|concert",
+    "batterie|violon|flûte|trompette|note|rythme|mélodie|orchestre|chorale|micro|disque|album|rap|rock|jazz|refrain|groupe|chanteuse|musicien|danse|tambour|harpe|saxophone",
+    "violoncelle|clarinette|contrebasse|accordéon|harmonica|ukulélé|xylophone|synthétiseur|clavier|cymbale|basse|partition|portée|clé de sol|solfège|accord|gamme|tempo|couplet|chœur|opéra|symphonie|concerto|compositeur|chef d'orchestre|baguette|ténor|soprano|alto|scène|festival|vinyle|playlist|tube|reggae|blues|pop|métal|électro|techno|hip-hop|platine|enceinte|casque|karaoké|fanfare|cuivre|hautbois|basson|trombone|tuba|cor|orgue|chant|cantatrice",
+    "arpège|octave|dièse|bémol|soupir|croche|noire|blanche|ronde|mesure|métronome|diapason|archet|pupitre|chef de chœur|maestro|virtuose|soliste|baryton|contralto|mezzo|cantate|sonate|fugue|requiem|nocturne|prélude|ouverture|oratorio|menuet|valse|tango|java|musette|biniou|cornemuse|banjo|mandoline|luth|lyre|cithare|balalaïka|sitar|djembé|triangle|castagnettes|maracas|glockenspiel|vibraphone|célesta|clavecin|harmonium|piccolo|cor anglais|sourdine|ampli|pédale|médiator|riff|solo|reprise|crescendo|staccato|legato|harmonie|contrepoint|dissonance|syncope|swing|groove|slam|yé-yé|zouk|raï|funk|soul|disco|punk|grunge|folk|country|gospel|castrat|chorus|cymbalum",
+    "anacrouse|hémiole|appogiature|mordant|trille|glissando|pizzicato|vibrato|trémolo|rubato|ostinato|basse continue|chiffrage|cadence|cadenza|modulation|tessiture|ambitus|timbre|quinte|quarte|tierce|septième|triton|leitmotiv|motet|madrigal|passacaille|chaconne|gigue|sarabande|gavotte|bourrée|rigaudon|vielle à roue|serpent|sacqueboute|ophicléide|théorbe|chalumeau|bandonéon|cajón|tabla|kora|ondes martenot|thérémine|mellotron|vocoder|sampler|séquenceur|boîte à rythmes|larsen|capodastre|chevalet|ouïe|frette|anche|embouchure|pavillon|piston|coulisse|luthier|carillon|clairon|crotales"],
+ v:["chanter|jouer|danser|écouter",
+    "composer|siffler|fredonner|répéter|enregistrer|accorder|applaudir|mixer|rapper",
+    "improviser|interpréter|diriger|accompagner|vocaliser|moduler|transposer|orchestrer|arranger|swinguer|taper|battre|gratter|pincer|souffler|frapper|déchiffrer|solfier|chorégraphier",
+    "harmoniser|chantonner|psalmodier|entonner|scander|rythmer|syncoper|ponctuer|résonner|vibrer|sonner|retentir|détonner|chevroter|sampler|remixer|tourner|bisser|ovationner|composer|cadencer",
+    "solmiser|triller|bourdonner|déchanter|désaccorder|marteler|arpéger|ululer|gazouiller|carillonner|claironner|tambouriner|pianoter|cymbaliser|corner|chalumer"],
+ a:["musical|beau|fort|doux|rapide|lent",
+    "mélodieux|joyeux|triste|rythmé|entraînant|classique|harmonieux|aigu|grave|juste|faux|bruyant",
+    "symphonique|instrumental|vocal|lyrique|acoustique|électrique|électronique|choral|orchestral|dansant|langoureux|mélancolique|envoûtant|sonore|discret|puissant|cuivré|chantant",
+    "majeur|mineur|dissonant|consonant|polyphonique|monophonique|atonal|tonal|modal|syncopé|binaire|ternaire|chromatique|diatonique|mélodique|baroque|romantique|contemporain|psychédélique|planant|feutré|cristallin|strident|assourdissant|harmonique|virtuose|lancinant|endiablé|cadencé",
+    "dodécaphonique|sériel|microtonal|contrapuntique|homophonique|euphonique|cacophonique|mélismatique|liturgique|grégorien|pentatonique|enharmonique|tempéré|plagal|vibrant|nasillard|éraillé|chevrotant|voilé|guttural|séraphique|flûté|mélomane|bachique|élégiaque|pastoral|concertant|cristallin"],
+ x:["la meme chanson|en avant la musique|connais la musique|connait la musique|connaitre la musique",
+    "change de disque|changer de disque|accorder nos violons|accorder ses violons|accorder les violons|accordons nos violons|chanter faux|hausser le ton|sonne faux|du pipeau",
+    "violon d ingres|en sourdine|pedale douce|papier a musique|faire un tabac|seconds violons|second violon|note est salee|note salee|sur tous les tons|au diapason|donner le la|sonner les cloches",
+    "concert de louanges|air de deja vu|l air et la chanson|va piano va sano|tambour battant|ni trompette|une autre chanson|a l unisson|dans un violon|dans les bronches|mener la danse|entrer dans la danse",
+    "meme refrain|chant du cygne|jouer du pipeau|faire chorus|battre la mesure|fausse note|oreille musicale|connaitre la chanson|on connait la chanson|connais la chanson"]},
+
+{id:"voyage", name:"Le voyage", emoji:"🧭", of:"le voyage", letter:"A",
+ n:["avion|valise|vacances|train|hôtel|voiture|passeport",
+    "billet|aéroport|plage|carte|bagage|sac à dos|touriste|gare|voyageur|visa|croisière|tourisme|guide|vol|aventure|camping|bateau|route|pays|frontière|douane",
+    "itinéraire|destination|escale|réservation|appareil photo|souvenir|carte postale|boussole|tente|auberge|auberge de jeunesse|gîte|chambre d'hôte|autostop|randonnée|excursion|trajet|départ|arrivée|correspondance|terminal|embarquement|pilote|hôtesse|steward|douanier|autoroute|autocar|métro|taxi|vélo|monument|musée|plan|GPS|atlas|globe-trotter|routard|décalage horaire|devise|monnaie|crème solaire|vaccin|assurance|agence de voyage|aller-retour|adresse|alpinisme",
+    "périple|odyssée|pèlerinage|expédition|safari|trek|trekking|road trip|tour du monde|backpacker|nomade|exotisme|dépaysement|caravane|camping-car|van|bivouac|refuge|transat|paquebot|wagon|couchette|wagon-lit|TGV|quai|tarmac|soute|cabine|hublot|bagage à main|étiquette|tampon|ambassade|consulat|office de tourisme|brochure|forfait|séjour|circuit|halte|étape|relais|motel|palace|pension|carnet de voyage|journal de bord|globe|mappemonde|longitude|latitude|fuseau horaire|escapade|virée|balade|flânerie|vagabondage|exil|migration|expatrié|aventurier|accueil|autochtone",
+    "caravansérail|ryokan|riad|yourte|hamac|sherpa|portage|transhumance|pérégrination|errance|bourlingueur|baroudeur|explorateur|cartographe|portulan|laissez-passer|sauf-conduit|apatride|pied-à-terre|villégiature|grand tour|transsibérien|diligence|malle-poste|relais de poste|malle|cantine|baluchon|barda|paquetage|vade-mecum|sésame|odomètre|dromadaire|chameau|pirogue|sampan|jonque|tuk-tuk|rickshaw|funiculaire|téléphérique|ferry|hydroglisseur|aéroglisseur|zeppelin|montgolfière|antipodes|anabase"],
+ v:["voyager|partir|visiter|marcher",
+    "découvrir|réserver|explorer|rouler|voler|conduire|arriver|revenir|décoller|atterrir|camper",
+    "embarquer|débarquer|randonner|bronzer|traverser|parcourir|séjourner|loger|flâner|perdre|photographier|naviguer|errer|émigrer|immigrer|évader|dépayser|vagabonder|planifier|préparer|emballer|aller|accueillir",
+    "pérégriner|baguenauder|déambuler|musarder|vadrouiller|sillonner|arpenter|transiter|enregistrer|composter|valider|expatrier|rapatrier|nomadiser|bivouaquer|transhumer|acclimater|dérouter|retarder|annuler|décaler|crapahuter|bourlinguer|atterrir|amerrir|alunir",
+    "trimballer|trimbaler|lambiner|cheminer|vaguer|rôder|transmigrer|déménager|appareiller|essaimer|cartographier|jalonner|baliser|accoster|aborder|arpenter"],
+ a:["beau|loin|lointain|étranger|touristique",
+    "exotique|international|dépaysant|aventureux|nomade|inoubliable|reposant|fatigant|national|culturel",
+    "aérien|ferroviaire|maritime|routier|cosmopolite|paradisiaque|pittoresque|authentique|insolite|typique|local|perdu|sauvage|ensoleillé|reculé|isolé|mythique|légendaire|exceptionnel|accueillant",
+    "transfrontalier|transatlantique|intercontinental|transcontinental|itinérant|errant|vagabond|migrateur|enchanteur|féérique|idyllique|bucolique|champêtre|montagnard|insulaire|tropical|désertique|polaire|austral|boréal|oriental|occidental|méridional|septentrional|inexploré|vierge|hospitalier|chaleureux|aventurier|ailleurs",
+    "allochtone|autochtone|indigène|apatride|interlope|bohème|erratique|hasardeux|périlleux|initiatique|onirique|dépaysé|bigarré|chamarré|bariolé|baroudeur|routard|ultramarin|transalpin|cisalpin|subsaharien|transsaharien|andin|himalayen|antipodal|apatride"],
+ x:["bon voyage|forment la jeunesse|a l aventure",
+    "la bougeotte|tour du monde|voir du pays|rouler sa bosse|poudre d escampette|jambes a son cou|bout du monde|chapeaux de roue",
+    "menent a rome|belle etoile|faire du stop|voiture simone|menage sa monture|prendre la route|prendre le large|a l anglaise|en cours de route|chemin faisant|diable vauvert|perpette|perpete",
+    "mourir un peu|comme ulysse|cle des champs|clef des champs|fourmis dans les jambes|battre la campagne|battre le pave|aller simple|a pied a cheval|mettre les bouts|lever le camp|plier bagage|faire ses valises|armes et bagages",
+    "a dache|pays de cocagne|a canossa|le rubicon|une odyssee|tailler la route|tracer la route|bon vent|prendre le maquis|en vadrouille|pretentaine|par monts et par vaux|monts et par vaux"]},
+
+{id:"foret", name:"La forêt", emoji:"🌲", of:"la forêt", letter:"F",
+ n:["arbre|forêt|feuille|fleur|bois|chêne",
+    "sapin|champignon|écureuil|branche|racine|tronc|écorce|herbe|mousse|fougère|cerf|biche|renard|sanglier|loup|hibou|chouette|oiseau|clairière|sentier|bûcheron|pomme de pin|gland|châtaigne|fraise|mûre",
+    "hêtre|bouleau|érable|pin|peuplier|saule|tilleul|frêne|châtaignier|noisetier|houx|lierre|ronce|bruyère|lichen|bourgeon|sève|résine|feuillage|cime|souche|bûche|brindille|humus|terrier|nid|pivert|pic-vert|geai|merle|rouge-gorge|blaireau|chevreuil|faon|hérisson|lapin|lièvre|fourmi|fourmilière|scarabée|limace|escargot|framboise|myrtille|noisette|cèpe|girolle|morille|ruisseau|étang|garde forestier|faune|flore|nature|fagot|feu",
+    "futaie|taillis|sous-bois|bosquet|bocage|lisière|orée|layon|chablis|houppier|aubier|cambium|charme|aulne|orme|if|mélèze|épicéa|douglas|cèdre|séquoia|sorbier|aubépine|sureau|églantier|prunellier|fusain|genêt|ajonc|chèvrefeuille|muguet|jacinthe|anémone|primevère|violette|digitale|ancolie|airelle|faîne|samare|cupule|cône|aiguille|mycélium|spore|lamelle|amanite|bolet|trompette de la mort|vesse-de-loup|mulot|campagnol|loir|martre|fouine|belette|hermine|lynx|marcassin|laie|daim|brame|ramure|pic épeiche|sittelle|mésange|grive|coucou|hulotte|grand-duc|buse|épervier|lucane|cétoine|carabe|mille-pattes|cloporte|tique|salamandre|triton|crapaud|grenouille|orvet|vipère|couleuvre|sylviculture|reboisement|déforestation|incendie|coupe-feu|fauvette|frondaison",
+    "sylve|ripisylve|canopée|hallier|fourré|breuil|essart|arboretum|pinède|chênaie|hêtraie|châtaigneraie|sapinière|peupleraie|aulnaie|frênaie|charmille|saulaie|lande|garrigue|maquis|taïga|litière|terreau|rhizome|stipe|volve|hyphe|mycorhize|sphaigne|tourbe|tourbière|duramen|liber|phloème|xylème|stomate|chlorophylle|photosynthèse|lignine|cerne|dendrochronologie|baliveau|grume|stère|cognée|merrain|essence|dryade|gui|druide|écotone|biotope|écosystème|biodiversité|faînée|fûtaie|fût"],
+ v:["pousser|grandir|marcher|couper|cueillir",
+    "grimper|planter|arroser|fleurir|chanter|promener|ramasser|abattre|scier|camper|chasser",
+    "bourgeonner|germer|fructifier|bruisser|bruire|craquer|murmurer|frissonner|ombrager|enraciner|élaguer|tailler|débroussailler|défricher|reboiser|déboiser|brouter|ronger|nicher|hiberner|butiner|gazouiller|hululer|bramer|glapir|fendre",
+    "frémir|chuchoter|verdoyer|reverdir|faner|flétrir|jaunir|roussir|effeuiller|défolier|essarter|écorcer|débiter|empiler|fagoter|glaner|grappiller|braconner|pister|traquer|débusquer|dénicher|herboriser|cheminer|foisonner|feuiller",
+    "marcotter|bouturer|greffer|essoucher|émonder|étêter|ébrancher|débarder|cuber|raire|réer|chuinter|zinzinuler|grisoller|craqueter|striduler|pépier|jaser|verdir|pulluler|proliférer|tapisser|futayer"],
+ a:["vert|grand|sauvage|beau|calme",
+    "boisé|feuillu|touffu|sombre|naturel|ombragé|frais|humide|silencieux|dense|épais",
+    "forestier|verdoyant|luxuriant|majestueux|centenaire|millénaire|mystérieux|enchanté|paisible|vierge|moussu|automnal|printanier|fleuri|sec|mort|vivant|résineux|épineux|feuillu",
+    "sylvestre|sylvicole|arboricole|ligneux|caduc|persistant|conifère|sempervirent|herbacé|buissonnant|broussailleux|impénétrable|inextricable|ténébreux|bruissant|frémissant|odorant|parfumé|embaumé|spongieux|noueux|tortueux|rabougri|élancé|altier|séculaire|vénérable|bucolique|champêtre|agreste|alpestre|fongique|fauve",
+    "sylvain|némoral|ripicole|ombrophile|héliophile|sciaphile|xérophile|hygrophile|saprophyte|saprophage|endémique|indigène|allochtone|invasif|décomposé|rameux|ramifié|chevelu|pubescent|glabre|tomenteux|velouté|lancéolé|palmé|denté|crénelé|lobé|feuillé|futé"],
+ x:["l arbre qui cache la foret|toucher du bois|touche du bois",
+    "faim de loup|parle du loup|sorti du bois|vertes et des pas mures|fleur de l age|fleur de peau|gueule du loup",
+    "cheque en bois|feu de tout bois|langue de bois|gueule de bois|herbe sous le pied|comme une feuille|homme des bois|aux corneilles|peau de l ours",
+    "bois je me chauffe|l oiseau fait son nid|comme une souche|se mettre au vert|dont on fait les flutes|feuille de chou|mauvaise herbe",
+    "l arbre et l ecorce|bois de justice|courir les bois|montent pas jusqu au ciel|l arbre a ses fruits|dans la fourmiliere|scier la branche"]},
+];
+
+/* ============ Normalisation & correspondance ============ */
+function norm(s){
+  return (s||"").toLowerCase().replace(/œ/g,"oe").replace(/æ/g,"ae")
+    .normalize("NFD").replace(/[̀-ͯ]/g,"")
+    .replace(/[’'`\-]/g," ").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+}
+function stripArticle(s){ return s.replace(/^(le|la|les|un|une|des|du|de la|de l|l|d)\s+/,""); }
+function stripPron(s){ return s.replace(/^(se|s|me|m)\s+/,""); }
+function letters(s){ return norm(s).replace(/[^a-z]/g,"").length; }
+
+const IDX = {}; // chapterId -> {n:Map, v:Map, a:Map, all:Map, x:[[frag,tier]]}
+for(const ch of CHAPTERS){
+  const d = {n:new Map(), v:new Map(), a:new Map(), all:new Map(), x:[], disp:new Map()};
+  for(const k of ["n","v","a"]){
+    ch[k].forEach((str,i)=>{
+      str.split("|").forEach(w=>{
+        const key = norm(w); if(!key) return;
+        if(!d[k].has(key)) d[k].set(key,i+1);
+        if(!d.all.has(key)) d.all.set(key,i+1);
+        if(!d.disp.has(key)) d.disp.set(key,w);
+      });
+    });
+  }
+  ch.x.forEach((str,i)=>str.split("|").forEach(f=>{const k=norm(f); if(k) d.x.push([k,i+1]);}));
+  IDX[ch.id]=d;
+}
+function variants(s){
+  const out=new Set([s]);
+  const add=v=>{ if(v&&v.length>1) out.add(v); };
+  add(s.replace(/s$/,"")); add(s.replace(/x$/,""));
+  add(s.replace(/aux$/,"al"));
+  add(s.replace(/e$/,"")); add(s.replace(/es$/,""));
+  add(s.replace(/euse$/,"eux")); add(s.replace(/euses$/,"eux"));
+  add(s.replace(/ive$/,"if")); add(s.replace(/ives$/,"if"));
+  add(s.replace(/elle$/,"el")); add(s.replace(/enne$/,"en"));
+  add(s.replace(/ere$/,"er")); add(s.replace(/eres$/,"er"));
+  add(s.replace(/che$/,"c")); add(s.replace(/ouce$/,"oux"));
+  add(s.replace(/eille$/,"eil")); add(s.replace(/ette$/,"et"));
+  return [...out];
+}
+function lookup(map, raw){
+  const s = norm(raw);
+  const cands = [s, stripArticle(s), stripPron(s)];
+  for(const c of cands) for(const v of variants(c)) if(map.has(v)) return {key:v, tier:map.get(v)};
+  return null;
+}
+
+/* ============ Les 7 manches ============ */
+const ROUNDS = [
+  {kind:"Nom",        q:ch=>`Un nom lié à ${ch.of}`,                         hint:"Un nom commun, au singulier ou au pluriel.", pool:"n"},
+  {kind:"Verbe",      q:ch=>`Un verbe lié à ${ch.of}`,                       hint:"À l’infinitif.", pool:"v"},
+  {kind:"Adjectif",   q:ch=>`Un adjectif lié à ${ch.of}`,                    hint:"Masculin ou féminin, peu importe.", pool:"a"},
+  {kind:"Expression", q:ch=>`Une expression française liée à ${ch.of}`,      hint:"Un idiome, un dicton, une locution…", pool:"x"},
+  {kind:"Mot long",   q:ch=>`Un mot de 9 lettres ou plus lié à ${ch.of}`,    hint:"Nom, verbe ou adjectif.", pool:"all", test:w=>letters(w)>=9, fail:"Moins de 9 lettres."},
+  {kind:"Initiale",   q:ch=>`Un mot lié à ${ch.of} qui commence par « ${ch.letter} »`, hint:"Nom, verbe ou adjectif.", pool:"all", test:(w,ch)=>stripPron(stripArticle(norm(w))).startsWith(ch.letter.toLowerCase()), fail:ch=>`Ne commence pas par « ${ch.letter} ».`},
+  {kind:"Mot court",  q:ch=>`Un mot de 5 lettres maximum lié à ${ch.of}`,   hint:"Nom, verbe ou adjectif.", pool:"all", test:w=>letters(stripArticle(norm(w)))<=5, fail:"Plus de 5 lettres."},
+];
+
+function judge(ch, r, raw){
+  const d = IDX[ch.id], R = ROUNDS[r];
+  if(!norm(raw)) return {tier:0, why:"Temps écoulé ou réponse vide."};
+  if(R.pool==="x"){
+    const s = norm(raw); let best=null;
+    for(const [f,t] of d.x) if(s.includes(f) && (!best || f.length>best[0].length)) best=[f,t];
+    return best ? {tier:best[1]} : {tier:0, why:"Expression introuvable dans le lexique de ce chapitre."};
+  }
+  if(R.test && !R.test(raw,ch)) return {tier:0, why: typeof R.fail==="function"?R.fail(ch):R.fail};
+  const hit = lookup(d[R.pool], raw);
+  if(hit) return {tier:hit.tier};
+  if(R.pool!=="all" && lookup(d.all, raw)) return {tier:0, why:`Bien vu, mais ce n’est pas un${R.kind==="Expression"?"e":""} ${R.kind.toLowerCase()} dans notre lexique.`};
+  return {tier:0, why:"Ce mot n’est pas dans le lexique de ce chapitre."};
+}
+function examples(ch, r){
+  const d = IDX[ch.id], R = ROUNDS[r];
+  if(R.pool==="x") return [];
+  let list=[...d[R.pool].entries()].filter(([k,t])=>t>=4).map(([k])=>d.disp.get(k));
+  if(R.test) list=list.filter(w=>R.test(w,ch));
+  return pick(list,3);
+}
+function pick(arr,n){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a.slice(0,n); }
+
+/* ============ Stockage (facultatif) ============ */
+const store = {
+  get(k,def){ try{ const v=localStorage.getItem("abysses:"+k); return v?JSON.parse(v):def; }catch(e){ return def; } },
+  set(k,v){ try{ localStorage.setItem("abysses:"+k, JSON.stringify(v)); }catch(e){} }
+};
+function todayKey(){ const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function dailyChapter(){ const d=new Date(); const n=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5); return CHAPTERS[n%CHAPTERS.length]; }
+
+/* ============ Interface ============ */
+const app = document.getElementById("app");
+let S = null, timerId = null;
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("on"); setTimeout(()=>t.classList.remove("on"),1600); }
+function zoneOf(m){ let z=ZONES[0][1]; for(const [d,n] of ZONES) if(m>=d) z=n; return z; }
+
+function home(){
+  clearInterval(timerId);
+  const dc = dailyChapter(), best = store.get("best",{}), daily = store.get("daily",{});
+  const done = daily.date===todayKey() ? daily : null;
+  app.innerHTML = `
+    <h1>Abysses</h1>
+    <p class="sub">Le jeu de vocabulaire où l’on plonge vers les mots rares. 7 consignes, 25 secondes chacune : plus ta réponse est inattendue, plus tu descends profond.</p>
+    <div class="daily">
+      <div class="k">Plongée du jour</div>
+      <h2>${dc.emoji} ${esc(dc.name)}</h2>
+      <p>${done ? `Déjà plongée aujourd’hui : <b>${done.pts*10} m</b>. Tu peux rejouer pour t’entraîner.` : "Même chapitre pour tout le monde aujourd’hui."}</p>
+      <button class="btn" data-go="${dc.id}" data-daily="1">${done?"Rejouer":"Plonger"}</button>
+    </div>
+    <div class="sec">Chapitres du lexique</div>
+    <div class="chapters">
+      ${CHAPTERS.map(c=>`<button class="ch" data-go="${c.id}"><div class="e">${c.emoji}</div><div class="n">${esc(c.name)}</div><div class="b">${best[c.id]!=null?`Record : ${best[c.id]*10} m`:"Pas encore plongé"}</div></button>`).join("")}
+    </div>
+    <details>
+      <summary>Comment jouer</summary>
+      <p>Chaque chapitre propose 7 manches : un nom, un verbe, un adjectif, une expression, un mot long (9 lettres et plus), un mot commençant par une lettre imposée et un mot court (5 lettres max). Une seule réponse par manche.</p>
+      <p>Chaque réponse acceptée est classée selon sa rareté dans le lexique du chapitre :</p>
+      <ul class="tiers">${TIERS.slice(1).map(t=>`<li><span class="${t.cls}">${t.emo} ${t.name}</span><span>${t.pts} pts</span></li>`).join("")}<li><span class="c0">${TIERS[0].emo} ${TIERS[0].name}</span><span>0 pt</span></li></ul>
+      <p>1 point = 10 mètres de profondeur. Score parfait : 700 pts, soit 7 000 m. Les accents, majuscules, articles et pluriels sont tolérés.</p>
+    </details>`;
+  app.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>start(b.dataset.go, !!b.dataset.daily));
+}
+
+function start(id, isDaily){
+  S = {ch:CHAPTERS.find(c=>c.id===id), r:0, answers:[], pts:0, daily:isDaily};
+  round();
+}
+
+function gaugeHTML(){
+  const pct = Math.min(100, S.pts/700*100);
+  return `<div class="gauge"><div class="fill" style="height:${pct}%"></div>
+    ${[0,2000,4000,6000].map(m=>`<div class="m" style="top:${m/7000*100+1}%">${m/1000}k</div>`).join("")}
+    <div class="dot" style="top:calc(${pct}% - ${pct>0?7:-4}px)"></div></div>`;
+}
+
+function round(){
+  clearInterval(timerId);
+  const ch=S.ch, R=ROUNDS[S.r];
+  app.innerHTML = `
+    <div class="top"><button class="x" id="quit">← Quitter</button><span class="chn">${ch.emoji} ${esc(ch.name)}</span></div>
+    <div class="layout">${gaugeHTML()}
+      <div class="main">
+        <div class="meta"><span>Manche ${S.r+1}/7</span><span>${S.pts*10} m</span></div>
+        <div class="timer"><i id="bar"></i></div>
+        <div class="prompt">
+          <div class="kind">${R.kind}</div>
+          <h2>${esc(R.q(ch))}</h2>
+          <div class="hint">${R.hint}</div>
+          <form id="f"><input id="in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Ta réponse…" enterkeyhint="send"><button class="btn" type="submit">OK</button></form>
+        </div>
+        <div id="out"></div>
+      </div>
+    </div>`;
+  document.getElementById("quit").onclick=home;
+  const inp=document.getElementById("in"); inp.focus();
+  const bar=document.getElementById("bar");
+  const t0=Date.now(); let locked=false;
+  const submit=()=>{ if(locked) return; locked=true; clearInterval(timerId); reveal(inp.value); };
+  document.getElementById("f").onsubmit=e=>{e.preventDefault(); if(norm(inp.value)) submit();};
+  timerId=setInterval(()=>{
+    const left=TIME-(Date.now()-t0)/1000;
+    bar.style.width=Math.max(0,left/TIME*100)+"%";
+    bar.classList.toggle("low",left<6);
+    if(left<=0) submit();
+  },100);
+}
+
+function reveal(raw){
+  const ch=S.ch, R=ROUNDS[S.r];
+  const res=judge(ch,S.r,raw), T=TIERS[res.tier];
+  S.pts+=T.pts; S.answers.push({raw:raw.trim(), tier:res.tier});
+  const inp=document.getElementById("in"); inp.disabled=true;
+  document.querySelector("#f button").disabled=true;
+  const ex=examples(ch,S.r);
+  document.getElementById("out").innerHTML = `
+    <div class="res">
+      <div class="ans">${raw.trim()?`« ${esc(raw.trim())} »`:"Pas de réponse"}</div>
+      <div class="tier ${T.cls}">${T.emo} ${T.name}</div>
+      <div class="pts">+${T.pts} pts · ${T.pts*10} m</div>
+      ${res.why?`<div class="why">${esc(res.why)}</div>`:""}
+      ${ex.length?`<div class="ex">Perles possibles : <b>${ex.map(esc).join("</b>, <b>")}</b></div>`:""}
+      <button class="btn" id="next">${S.r<6?"Manche suivante":"Remonter à la surface"}</button>
+    </div>`;
+  document.querySelector(".gauge").outerHTML = gaugeHTML();
+  document.querySelector(".meta span:last-child").textContent = S.pts*10+" m";
+  const nb=document.getElementById("next"); nb.focus();
+  nb.onclick=()=>{ S.r++; S.r<7?round():finish(); };
+}
+
+function finish(){
+  clearInterval(timerId);
+  const ch=S.ch, m=S.pts*10;
+  const best=store.get("best",{}); const rec = best[ch.id]==null || S.pts>best[ch.id];
+  if(rec){ best[ch.id]=S.pts; store.set("best",best); }
+  if(S.daily){ const d=store.get("daily",{}); if(d.date!==todayKey()) store.set("daily",{date:todayKey(),pts:S.pts}); }
+  const share = `Abysses · ${ch.name}${S.daily?" (plongée du jour)":""}\n${S.answers.map(a=>TIERS[a.tier].emo).join("")}\n${m.toLocaleString("fr-FR")} m — ${zoneOf(m)}`;
+  app.innerHTML = `
+    <div class="top"><button class="x" id="quit">← Accueil</button><span class="chn">${ch.emoji} ${esc(ch.name)}</span></div>
+    <div class="score">
+      <div class="big">${m.toLocaleString("fr-FR")} m</div>
+      <div class="dep">${S.pts} / 700 pts${rec?" · nouveau record !":""}</div>
+      <div class="zone">${zoneOf(m)}</div>
+    </div>
+    <div class="rows">${S.answers.map((a,i)=>{const T=TIERS[a.tier];return `<div class="row"><div class="l"><div class="q">${ROUNDS[i].kind}</div><div class="a">${a.raw?esc(a.raw):"—"}</div></div><div class="t ${T.cls}">${T.emo} ${T.pts}</div></div>`}).join("")}</div>
+    <div class="share">${esc(share)}</div>
+    <div class="stack">
+      <button class="btn" id="copy">Copier le résultat</button>
+      <button class="btn ghost" id="again">Rejouer ce chapitre</button>
+      <button class="btn ghost" id="home">Autres chapitres</button>
+    </div>`;
+  document.getElementById("quit").onclick=home;
+  document.getElementById("home").onclick=home;
+  document.getElementById("again").onclick=()=>start(ch.id,false);
+  document.getElementById("copy").onclick=async()=>{
+    try{ await navigator.clipboard.writeText(share); toast("Copié !"); }
+    catch(e){ toast("Copie impossible — sélectionne le texte"); }
+  };
+}
+
+home();
+</script>
+</body>
+</html>
